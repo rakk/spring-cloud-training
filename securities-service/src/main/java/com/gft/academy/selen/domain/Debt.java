@@ -1,25 +1,22 @@
 package com.gft.academy.selen.domain;
 
+import com.gft.academy.selen.constant.DebtStatus;
 
-import com.gft.academy.selen.constant.LoanStatus;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 
 @Entity
-public class Loan {
+public class Debt {
 
     @Id
-    @GeneratedValue
     private Long id;
+    private String client;
     private String securityId;
     private Integer quantity;
-    private String client;
-
     @Enumerated(EnumType.STRING)
-    private LoanStatus status = LoanStatus.NEW;
-
-    public Loan() {
-    }
+    private DebtStatus status;
 
     public Long getId() {
         return id;
@@ -27,6 +24,14 @@ public class Loan {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
     }
 
     public String getSecurityId() {
@@ -45,19 +50,11 @@ public class Loan {
         this.quantity = quantity;
     }
 
-    public LoanStatus getStatus() {
+    public DebtStatus getStatus() {
         return status;
     }
 
-    public void setStatus(LoanStatus status) {
+    public void setStatus(DebtStatus status) {
         this.status = status;
-    }
-
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
     }
 }
