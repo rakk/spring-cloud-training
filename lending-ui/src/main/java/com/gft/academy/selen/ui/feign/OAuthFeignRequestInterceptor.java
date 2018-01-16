@@ -1,4 +1,4 @@
-package com.gft.oauth.client;
+package com.gft.academy.selen.ui.feign;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
@@ -6,7 +6,6 @@ import org.apache.commons.lang.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
 
 public class OAuthFeignRequestInterceptor implements RequestInterceptor {
 
