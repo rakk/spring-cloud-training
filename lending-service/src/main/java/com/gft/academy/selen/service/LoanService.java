@@ -36,8 +36,7 @@ public class LoanService {
 
         loan = loanRepository.save(loan);
 
-        // TODO: use discovery service
-        URI targetURI = restTemplate.postForLocation("http://localhost:9001/debt", loan);
+        URI targetURI = restTemplate.postForLocation("http://securities-service/debt", loan);
         Loan transfer = restTemplate.getForObject(targetURI, Loan.class);
         loan.setStatus(transfer.getStatus());
         return loan;
@@ -47,8 +46,7 @@ public class LoanService {
         loan.setStatus(LoanStatus.RETURNED);
         loan = loanRepository.save(loan);
 
-        // TODO: use discovery service
-        restTemplate.put("http://localhost:9001/debt/" + loan.getId(), loan);
+        restTemplate.put("http://securities-service/debt/" + loan.getId(), loan);
         return loan;
     }
 
