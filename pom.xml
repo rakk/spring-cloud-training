@@ -17,6 +17,7 @@
         <module>config-service</module>
         <module>admin-service</module>
         <module>tracing-service</module>
+        <module>routing-service</module>
 
         <!-- core services -->
         <module>lending-service</module>
