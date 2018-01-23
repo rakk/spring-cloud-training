@@ -6,6 +6,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
 import com.gft.academy.routing.fallback.DefaultFallback;
+import com.gft.academy.routing.filter.MethodRouteFilter;
+import com.gft.academy.routing.filter.PreLogFilter;
 
 @EnableZuulProxy
 @SpringBootApplication
@@ -18,5 +20,15 @@ public class RoutingServiceApplication {
 	@Bean
 	DefaultFallback defaultFallback() {
 		return new DefaultFallback();
+	}
+	
+	@Bean
+	PreLogFilter preLoginFilter() {
+		return new PreLogFilter();
+	}
+	
+	@Bean
+	MethodRouteFilter methodRouteFilter() {
+		return new MethodRouteFilter();
 	}
 }
