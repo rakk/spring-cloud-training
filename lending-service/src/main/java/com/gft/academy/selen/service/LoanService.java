@@ -2,6 +2,7 @@ package com.gft.academy.selen.service;
 
 import com.gft.academy.selen.constant.LoanStatus;
 import com.gft.academy.selen.domain.Loan;
+import com.gft.academy.selen.hystrix.IncurDebtCommand;
 import com.gft.academy.selen.repository.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,12 +33,10 @@ public class LoanService {
         loan.setSecurityId(securityId);
         loan.setQuantity(quantity);
 
-        // TODO: loan.setClient();
-
         loan = loanRepository.save(loan);
 
-        URI targetURI = restTemplate.postForLocation("http://securities-service/debt", loan);
-        Loan transfer = restTemplate.getForObject(targetURI, Loan.class);
+        IncurDebtCommand command = new IncurDebtCommand(restTemplate, loan);
+        Loan transfer = command.execute();
         loan.setStatus(transfer.getStatus());
         return loan;
     }
