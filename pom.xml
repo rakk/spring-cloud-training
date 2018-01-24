@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cloud.training</groupId>
+    <artifactId>cloud-training</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>cloud-training</name>
+    <description>Spring Cloud Training services</description>
+
+    <modules>
+        <!-- tools -->
+        <module>discovery-service</module>
+        <module>config-service</module>
+        <module>admin-service</module>
+        <module>tracing-service</module>
+        <module>routing-service</module>
+
+        <!-- core services -->
+        <module>lending-service</module>
+        <module>securities-service</module>
+    </modules>
+
+</project>
