@@ -2,7 +2,9 @@ package com.gft.academy.selen.service;
 
 import com.gft.academy.selen.constant.LoanStatus;
 import com.gft.academy.selen.domain.Loan;
+import com.gft.academy.selen.hystrix.IncurDebtCommand;
 import com.gft.academy.selen.repository.LoanRepository;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,21 +34,24 @@ public class LoanService {
         loan.setSecurityId(securityId);
         loan.setQuantity(quantity);
 
-        // TODO: loan.setClient();
-
         loan = loanRepository.save(loan);
 
-        URI targetURI = restTemplate.postForLocation("http://securities-service/debt", loan);
-        Loan transfer = restTemplate.getForObject(targetURI, Loan.class);
+        IncurDebtCommand command = new IncurDebtCommand(restTemplate, loan);
+        Loan transfer = command.execute();
         loan.setStatus(transfer.getStatus());
         return loan;
     }
 
+    @HystrixCommand(fallbackMethod = "markAsPendingReturn")
     public Loan returnLoan(Loan loan) {
+        restTemplate.put("http://securities-service/debt/" + loan.getId(), loan);
         loan.setStatus(LoanStatus.RETURNED);
         loan = loanRepository.save(loan);
+        return loan;
+    }
 
-        restTemplate.put("http://securities-service/debt/" + loan.getId(), loan);
+    public Loan markAsPendingReturn(Loan loan) {
+        loan.setStatus(LoanStatus.PENDING_RETURN);
         return loan;
     }
 
