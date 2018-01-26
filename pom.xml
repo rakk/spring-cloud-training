@@ -23,6 +23,7 @@
         <module>lending-service</module>
         <module>lending-ui</module>
         <module>securities-service</module>
+
     </modules>
 
 </project>
