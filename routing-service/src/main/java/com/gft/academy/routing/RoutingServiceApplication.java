@@ -1,34 +1,41 @@
 package com.gft.academy.routing;
 
+import com.gft.academy.routing.fallback.DefaultFallback;
+import com.gft.academy.routing.fallback.WebFallback;
+import com.gft.academy.routing.filter.PreLogFilter;
+import com.gft.academy.routing.filter.VersionRouteFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
-import com.gft.academy.routing.fallback.DefaultFallback;
-import com.gft.academy.routing.filter.MethodRouteFilter;
-import com.gft.academy.routing.filter.PreLogFilter;
-
 @EnableZuulProxy
+@EnableOAuth2Sso
 @SpringBootApplication
 public class RoutingServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RoutingServiceApplication.class, args);
-	}
-	
-	@Bean
-	DefaultFallback defaultFallback() {
-		return new DefaultFallback();
-	}
-	
-	@Bean
-	PreLogFilter preLoginFilter() {
-		return new PreLogFilter();
-	}
-	
-	@Bean
-	MethodRouteFilter methodRouteFilter() {
-		return new MethodRouteFilter();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RoutingServiceApplication.class, args);
+    }
+
+    @Bean
+    DefaultFallback defaultFallback() {
+        return new DefaultFallback();
+    }
+
+    @Bean
+    WebFallback webFallback() {
+        return new WebFallback();
+    }
+
+    @Bean
+    PreLogFilter preLoginFilter() {
+        return new PreLogFilter();
+    }
+
+    @Bean
+    VersionRouteFilter methodRouteFilter() {
+        return new VersionRouteFilter();
+    }
 }
