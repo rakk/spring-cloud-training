@@ -1,4 +1,10 @@
-# spring-cloud-training
+# Spring Cloud Training
+
+This project is used for training of Spring-Cloud developer tools.
+
+Configuration for project is located here: [rakk/spring-cloud-training-configuration](https://github.com/rakk/spring-cloud-training-configuration) repository.
+
+## OAuth
 
 Facebook OAuth test users created for this app
 
@@ -12,6 +18,7 @@ pyyxtvbbbr_1516911674@tfbnw.net
 
 open_vbgkmxr_user@tfbnw.net	
 
+## UI project
 How To start http server with simple HTML page
 
 1. Install Node.js 8.9.4
