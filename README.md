@@ -48,9 +48,9 @@ Run ```mvn clean install``` to build all projects.
 
 ### Config Server and Discovery Service
 
-```cd config-service && spring-boot:run```
+```cd config-service && ./mvnw spring-boot:run```
 
-```cd discovery-service && spring-boot:run```
+```cd discovery-service && ./mvnw spring-boot:run```
 
 make sure that services are loaded:
 * ```http://localhost:9020/lending-service/whatever```
@@ -58,16 +58,16 @@ make sure that services are loaded:
 
 ### Other tools
 
-```cd admin-service && spring-boot:run```
+```cd admin-service && ./mvnw spring-boot:run```
 
-```cd tracing-service && spring-boot:run```
+```cd tracing-service && ./mvnw spring-boot:run```
 
 ### Core services
 
-```cd lending-service && spring-boot:run```
+```cd lending-service && ./mvnw spring-boot:run```
 
-```cd lending-ui && spring-boot:run```
+```cd lending-ui && ./mvnw spring-boot:run```
 
-```cd securities-service && spring-boot:run```
+```cd securities-service && ./mvnw spring-boot:run```
 
-```cd routing-service && spring-boot:run```
+```cd routing-service && ./mvnw spring-boot:run```
