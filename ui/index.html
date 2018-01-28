@@ -29,6 +29,7 @@
                     <tr>
                         <th>Security Name</th>
                         <th>Available quantity</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody class="tbody">
@@ -52,6 +53,7 @@
 
     $(function() {
         $('#info-box').hide();
+
         $('.btn').click(
             function(){
                 $.ajax({
@@ -61,8 +63,20 @@
                     $('#info-box').hide();
                     $('#data-box .tbody').html('');
                     $(data).each(function(idx, security){
-                        $('#data-box .tbody').append('<tr><td>'+security.id+'</td><td>'+security.availableQuantity+'</td></tr>');
+                        $('#data-box .tbody').append('<tr><td>'+security.id+'</td><td>'+security.availableQuantity+'</td><td><button data-security="'+security.id+'">Loan</button></td></tr>');
                     });
+
+                    $('button').click(function(){
+                        var data = $(this).data();
+
+                        $.post({
+                            url: "/ls/loan?securityId="+data.security+"&quantity="+1
+                        }).done(function(){
+                        });
+
+
+                    });
+
                 }).fail(function(data){
                     $('#info-box').show();
                     $('#info-box .alert .info').html('').append(data.responseText);

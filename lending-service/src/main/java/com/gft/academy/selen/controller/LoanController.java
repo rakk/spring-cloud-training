@@ -58,10 +58,7 @@ public class LoanController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Collection<Loan>> readAllLoans() {
         List<Loan> loans = loanService.findAll().collect(Collectors.toList());
-        if (!loans.isEmpty()) {
-            return ResponseEntity.ok(loans);
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(loans);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
