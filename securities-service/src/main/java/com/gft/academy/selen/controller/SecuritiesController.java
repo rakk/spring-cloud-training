@@ -74,7 +74,7 @@ public class SecuritiesController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/debt/{id}")
-    public ResponseEntity<Debt> debtsBySecurity(@PathVariable Long id) {
+    public ResponseEntity<Debt> debtById(@PathVariable Long id) {
         Optional<Debt> optionalDebt = debtRepository.findById(id);
         if (optionalDebt.isPresent()) {
             return ResponseEntity.ok(optionalDebt.get());
