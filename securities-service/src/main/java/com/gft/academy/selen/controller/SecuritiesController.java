@@ -82,11 +82,6 @@ public class SecuritiesController {
         return ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/debt")
-    public ResponseEntity<List<Debt>> debtsBySecurity(@RequestParam String securityId) {
-        return ResponseEntity.ok(debtRepository.findBySecurityId(securityId).collect(Collectors.toList()));
-    }
-
     @RequestMapping(method = RequestMethod.GET, path = "/security")
     public ResponseEntity<List<Security>> securities() {
         return ResponseEntity.ok(securityRepository.findAll().collect(Collectors.toList()));

@@ -55,22 +55,6 @@ public class SecuritiesControllerTest {
 
     @Test
     @WithMockUser(username = "test", password = "test")
-    public void shouldReturnAllDebtsBySecurityId() throws Exception {
-        // given
-        List<Debt> debts = new ArrayList<>();
-        debts.add(createDebt(1L, "IBM", 100, DebtStatus.ACTIVE));
-        debts.add(createDebt(2L, "IBM", 200, DebtStatus.RETURNED));
-        Mockito.when(debtRepositoryMock.findBySecurityId("IBM")).thenReturn(debts.stream());
-
-        // when
-        String response = mockMvc.perform(get("/debt").param("securityId", "IBM")).andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-
-        //then
-        JSONAssert.assertEquals("[{\"id\":1,\"client\":null,\"securityId\":\"IBM\",\"quantity\":100,\"status\":\"ACTIVE\"},{\"id\":2,\"client\":null,\"securityId\":\"IBM\",\"quantity\":200,\"status\":\"RETURNED\"}]", response, true);
-    }
-
-    @Test
-    @WithMockUser(username = "test", password = "test")
     public void shouldReturnDebtById() throws Exception {
         // given
         Long debtId = 1L;
