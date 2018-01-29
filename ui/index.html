@@ -63,7 +63,7 @@
                     $('#info-box').hide();
                     $('#data-box .tbody').html('');
                     $(data).each(function(idx, security){
-                        $('#data-box .tbody').append('<tr><td>'+security.id+'</td><td>'+security.availableQuantity+'</td><td><button data-security="'+security.id+'">Loan</button></td></tr>');
+                        $('#data-box .tbody').append('<tr><td>'+security.id+'</td><td>'+security.availableQuantity+'</td><td><button data-security="'+security.id+'">Lend</button></td></tr>');
                     });
 
                     $('button').click(function(){
