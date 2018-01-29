@@ -35,7 +35,7 @@ public class RoutingServiceApplication {
     }
 
     @Bean
-    VersionRouteFilter methodRouteFilter() {
+    VersionRouteFilter versionRouteFilter() {
         return new VersionRouteFilter();
     }
 
