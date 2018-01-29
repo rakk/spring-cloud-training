@@ -24,6 +24,9 @@
         <module>lending-ui</module>
         <module>securities-service</module>
 
+        <!-- oauth2 authorization server -->
+        <module>oauth2-security-server</module>
+
     </modules>
 
 </project>
