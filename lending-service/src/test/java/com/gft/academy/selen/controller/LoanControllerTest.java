@@ -2,10 +2,7 @@ package com.gft.academy.selen.controller;
 
 import com.gft.academy.selen.constant.LoanStatus;
 import com.gft.academy.selen.domain.Loan;
-import com.gft.academy.selen.domain.Security;
-import com.gft.academy.selen.feign.SecuritiesClient;
 import com.gft.academy.selen.service.LoanService;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -22,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,9 +32,6 @@ public class LoanControllerTest {
 
     @MockBean
     private LoanService loanServiceMock;
-
-    @MockBean
-    private SecuritiesClient securitiesClientMock;
 
     @Test
     @WithMockUser(username = "test", password = "test")
@@ -86,24 +79,6 @@ public class LoanControllerTest {
 
         // then
         JSONAssert.assertEquals("{\"id\":1,\"securityId\":\"IBM\",\"quantity\":100,\"client\":null,\"status\":\"RETURNED\"}", response, true);
-    }
-
-    @Test
-    @WithMockUser(username = "test", password = "test")
-    public void shouldTakeOutLoan() throws Exception {
-        // given
-        String securityId = "IBM";
-        Integer quantity = 100;
-        List<Security> securities = new ArrayList<>();
-        securities.add(new Security("IBM", 500));
-        Mockito.when(securitiesClientMock.getAvailableSecurities()).thenReturn(securities);
-        Mockito.when(loanServiceMock.takeOutLoan(securityId, quantity)).thenReturn(createLoan(1L, securityId, quantity, LoanStatus.ACTIVE));
-
-        // when
-        String location = mockMvc.perform(post("/loan").param("securityId", securityId).param("quantity", String.valueOf(quantity))).andDo(print()).andExpect(status().isCreated()).andReturn().getResponse().getHeader("Location");
-
-        // then
-        Assertions.assertThat(location).isEqualTo("http://localhost/loan/1");
     }
 
     private Loan createLoan(Long id, String securityId, Integer quantity, LoanStatus status) {

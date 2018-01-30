@@ -1,8 +1,6 @@
 package com.gft.academy.selen.controller;
 
 import com.gft.academy.selen.domain.Loan;
-import com.gft.academy.selen.domain.Security;
-import com.gft.academy.selen.feign.SecuritiesClient;
 import com.gft.academy.selen.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,6 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -25,20 +22,14 @@ import java.util.stream.Collectors;
 public class LoanController {
 
     private final LoanService loanService;
-    private final SecuritiesClient securitiesClient;
 
     @Autowired
-    public LoanController(LoanService loanService, SecuritiesClient securitiesClient) {
+    public LoanController(LoanService loanService) {
         this.loanService = loanService;
-        this.securitiesClient = securitiesClient;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> takeOutLoan(@RequestParam String securityId, @RequestParam Integer quantity) {
-        Set<String> availableSecurityIds = securitiesClient.getAvailableSecurities().stream().map(Security::getId).collect(Collectors.toSet());
-        if (!availableSecurityIds.contains(securityId)) {
-            return ResponseEntity.badRequest().build();
-        }
         Loan loan = loanService.takeOutLoan(securityId, quantity);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/loan/{id}")
                 .buildAndExpand(loan.getId()).toUri();
