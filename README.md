@@ -6,14 +6,19 @@ Configuration for project is located here: [rakk/spring-cloud-training-configura
 
 ## OAuth
 
-This version of the app contains spring oauth2 authorization server.
+This version of the app uses facebook as external authentication provider (oauth SSO).
 
-Predefined OAuth test users created for this app
+Facebook OAuth test users created for this app
 
-* ```admin```:```admin``` - has role ADMIN
+* ```hqichraxly_1516911670@tfbnw.net```
 
-* ```user```:```password``` - has role USER
+* ```imtykpbglb_1516911667@tfbnw.net```
 
+* ```qgfuwwrlvt_1516911664@tfbnw.net```
+
+* ```pyyxtvbbbr_1516911674@tfbnw.net```
+
+* ```open_vbgkmxr_user@tfbnw.net```
 ## UI project
 How To start http server with simple HTML page
 
@@ -57,10 +62,6 @@ make sure that services are loaded:
 ```cd admin-service && ./mvnw spring-boot:run```
 
 ```cd tracing-service && ./mvnw spring-boot:run```
-
-### OAuth2 Server - has to be loaded before any client
-
-```cd oauth2-security-server && ./mvnw spring-boot:run```
 
 ### Core services
 
