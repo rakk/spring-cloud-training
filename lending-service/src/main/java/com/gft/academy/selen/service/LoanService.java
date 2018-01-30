@@ -8,13 +8,10 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -25,10 +22,10 @@ public class LoanService {
 
     private final LoanRepository loanRepository;
 
-    private final OAuth2RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public LoanService(LoanRepository loanRepository, OAuth2RestTemplate restTemplate) {
+    public LoanService(LoanRepository loanRepository, RestTemplate restTemplate) {
         this.loanRepository = loanRepository;
         this.restTemplate = restTemplate;
     }
