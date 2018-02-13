@@ -63,7 +63,7 @@
         <profile>
             <id>java9</id>
             <activation>
-                <jdk>8</jdk>
+                <jdk>9</jdk>
             </activation>
             <properties>
                 <additional-jvm-properties>--add-modules java.xml.bind</additional-jvm-properties>
