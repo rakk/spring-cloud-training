@@ -49,7 +49,7 @@ This might take a while...
 #### 3. Run **tracking-service**
 
 ```cd %Homepath%\Desktop\spring-cloud-training\tracking-service && mvnw spring-boot:run``` open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
- 
+
 
 #### 4. Run **admin-service**
 
@@ -65,7 +65,7 @@ Rest of core projects requires both config-server and discovery-service. It is i
 
 #### 7. Run **securities-service**
 
-```cd %Homepath%\Desktop\spring-cloud-training\securities-service && mvnw spring-boot:run``` and open in browser port: **9030** [http://localhost:9030/info](http://localhost:9030/info) 
+```cd %Homepath%\Desktop\spring-cloud-training\securities-service && mvnw spring-boot:run``` and open in browser port: **9030** [http://localhost:9030/info](http://localhost:9030/info)
 
 #### 8. Run **lending-service**
 
@@ -123,7 +123,7 @@ This might take a while...
 #### 3. Run **tracking-service**
 
 ```cd ~/Desktop/spring-cloud-training/tracking-service && ./mvnw spring-boot:run``` open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
- 
+
 #### 4. Run **admin-service**
 
 ```cd ~/Deskop/spring-cloud-training/admin-service && ./mvnw spring-boot:run``` open in browser port: **9024** => [http://localhost:9024](http://localhost:9024)
@@ -138,7 +138,7 @@ Rest of core projects requires both config-server and discovery-service. It is i
 
 #### 7. Run **securities-service**
 
-```cd ~/Deskop/spring-cloud-training/securities-service && ./mvnw spring-boot:run``` and open in browser port: **9030** [http://localhost:9030/info](http://localhost:9030/info) 
+```cd ~/Deskop/spring-cloud-training/securities-service && ./mvnw spring-boot:run``` and open in browser port: **9030** [http://localhost:9030/info](http://localhost:9030/info)
 
 #### 8. Run **lending-service**
 
@@ -169,10 +169,69 @@ npm install http-server -g
 
 ## OAuth
 
-This version of the app contains spring oauth2 authorization server.
+This version of the app uses facebook as external authentication provider (oauth SSO).
 
-Predefined OAuth test users created for this app
+Facebook OAuth test users created for this app
 
-* ```admin```:```admin``` - has role ADMIN
+* ```hqichraxly_1516911670@tfbnw.net```
 
-* ```user```:```password``` - has role USER
+* ```imtykpbglb_1516911667@tfbnw.net```
+
+* ```qgfuwwrlvt_1516911664@tfbnw.net```
+
+* ```pyyxtvbbbr_1516911674@tfbnw.net```
+
+* ```open_vbgkmxr_user@tfbnw.net```
+## UI project
+How To start http server with simple HTML page
+
+1. Install Node.js 8.9.4
+2. Install http-server: ```npm install http-server -g```
+3. Run first node of UI server:
+
+    a. Go to folder UI in the project and run
+
+    b. ```bash
+    http-sever``` in first console window
+
+    c. Open web browser ```http://localhost:8080```
+4. Run second node of UI server:
+
+    a. Go to folder UI in the proejct and
+
+    b. ```bash
+    http-server -p 8090``` in second console window
+
+    c. Open web browser ```http://localhost:8090```
+
+## How to run Java projects
+
+### Build project
+
+Run ```mvn clean install``` to build all projects.
+
+### Config Server and Discovery Service
+
+```cd config-service && ./mvnw spring-boot:run```
+
+```cd discovery-service && ./mvnw spring-boot:run```
+
+make sure that services are loaded:
+* ```http://localhost:9020/lending-service/whatever```
+* ```http://localhost:9021```
+
+### Other tools
+
+```cd admin-service && ./mvnw spring-boot:run```
+
+```cd tracing-service && ./mvnw spring-boot:run```
+
+### Core services
+
+```cd lending-service && ./mvnw spring-boot:run```
+
+```cd lending-ui && ./mvnw spring-boot:run```
+
+```cd securities-service && ./mvnw spring-boot:run```
+
+```cd routing-service && ./mvnw spring-boot:run```
