@@ -3,7 +3,7 @@ package com.gft.academy.selen.controller;
 import com.gft.academy.selen.constant.LoanStatus;
 import com.gft.academy.selen.domain.Loan;
 import com.gft.academy.selen.domain.Security;
-import com.gft.academy.selen.feign.SecuritiesClient;
+import com.gft.academy.selen.client.SecuritiesFeignClient;
 import com.gft.academy.selen.service.LoanService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -40,7 +40,7 @@ public class LoanControllerTest {
     private LoanService loanServiceMock;
 
     @MockBean
-    private SecuritiesClient securitiesClientMock;
+    private SecuritiesFeignClient securitiesFeignClientMock;
 
     @Test
     @WithMockUser(username = "test", password = "test")
@@ -98,7 +98,7 @@ public class LoanControllerTest {
         Integer quantity = 100;
         List<Security> securities = new ArrayList<>();
         securities.add(new Security("IBM", 500));
-        Mockito.when(securitiesClientMock.getAvailableSecurities()).thenReturn(securities);
+        Mockito.when(securitiesFeignClientMock.getAvailableSecurities()).thenReturn(securities);
         Mockito.when(loanServiceMock.takeOutLoan(securityId, quantity)).thenReturn(createLoan(1L, securityId, quantity, LoanStatus.ACTIVE));
 
         // when

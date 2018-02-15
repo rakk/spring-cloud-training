@@ -2,7 +2,7 @@ package com.gft.academy.selen.controller;
 
 import com.gft.academy.selen.domain.Loan;
 import com.gft.academy.selen.domain.Security;
-import com.gft.academy.selen.feign.SecuritiesClient;
+import com.gft.academy.selen.client.SecuritiesFeignClient;
 import com.gft.academy.selen.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +25,17 @@ import java.util.stream.Collectors;
 public class LoanController {
 
     private final LoanService loanService;
-    private final SecuritiesClient securitiesClient;
+    private final SecuritiesFeignClient securitiesFeignClient;
 
     @Autowired
-    public LoanController(LoanService loanService, SecuritiesClient securitiesClient) {
+    public LoanController(LoanService loanService, SecuritiesFeignClient securitiesFeignClient) {
         this.loanService = loanService;
-        this.securitiesClient = securitiesClient;
+        this.securitiesFeignClient = securitiesFeignClient;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> takeOutLoan(@RequestParam String securityId, @RequestParam Integer quantity) {
-        Set<String> availableSecurityIds = securitiesClient.getAvailableSecurities().stream().map(Security::getId).collect(Collectors.toSet());
+        Set<String> availableSecurityIds = securitiesFeignClient.getAvailableSecurities().stream().map(Security::getId).collect(Collectors.toSet());
         if (!availableSecurityIds.contains(securityId)) {
             return ResponseEntity.badRequest().build();
         }
