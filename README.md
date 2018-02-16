@@ -7,9 +7,18 @@ Configuration for project is located in [rakk/spring-cloud-training-configuratio
 Table of Contents
 =================
 
+* [Branches](#branches)
 * [Build and run on Windows](#windows)
 * [Build and run Linux/MacOS](#linux-or-mac-os)
 * [Credentials](#credentials)
+
+## Branches
+
+During the training we will use branches:
+* **live-coding-communication** (starting point for the live coding)
+* **live-coding-routing**
+* **live-coding-security**
+
 
 ## Installation process
 
@@ -162,7 +171,7 @@ Rest of core projects requires both config-service and discovery-service. It is 
 
 ##### 6. Run **oath2-security-server**
 
-:exclamation: ** master branch only** :exclamation:
+:exclamation: **master branch only** :exclamation:
  
 ```cd ~/Deskop/spring-cloud-training/oath2-security-server && ./mvnw spring-boot:run```
 
