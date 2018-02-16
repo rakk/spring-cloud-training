@@ -46,24 +46,24 @@ This might take a while...
 
 #### Run java projects
 
-##### 1. Run **config-service**
-
-```cd %Homepath%\Desktop\spring-cloud-training\config-service && mvnw spring-boot:run```
-
-and open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
-
-##### 2. Run **discovery-service**
+##### 1. Run **discovery-service**
 
 ```cd %Homepath%\Desktop\spring-cloud-training\discovery-service && mvnw spring-boot:run```
 
 and open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
+
+##### 2. Run **config-service**
+
+```cd %Homepath%\Desktop\spring-cloud-training\config-service && mvnw spring-boot:run```
+
+and open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
 
 ##### 3. Run **tracing-service**
 
 ```cd %Homepath%\Desktop\spring-cloud-training\tracing-service && mvnw spring-boot:run```
 
 and open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
- 
+
 
 ##### 4. Run **admin-service**
 
@@ -87,7 +87,7 @@ and open in browser port: **9030** => [http://localhost:9030/uaa/login](http://l
 
 ```cd %Homepath%\Desktop\spring-cloud-training\securities-service && mvnw spring-boot:run```
 
-and open in browser port: **9001** => [http://localhost:9001/info](http://localhost:9001/info) 
+and open in browser port: **9001** => [http://localhost:9001/info](http://localhost:9001/info)
 
 ##### 8. Run **lending-service**
 
@@ -141,27 +141,27 @@ This might take a while...
 
 #### Run java projects
 
-##### 1. Run **config-service**
-
-```cd ~/Desktop/spring-cloud-training/spring-cloud-training/config-service && ./mvnw spring-boot:run```
-
-and open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
-
 ##### 2. Run **discovery-service**
 
 ```cd ~/Desktop/spring-cloud-training/discovery-service && ./mvnw spring-boot:run```
 
 and open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
 
+##### 1. Run **config-service**
+
+```cd ~/Desktop/spring-cloud-training/config-service && ./mvnw spring-boot:run```
+
+and open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
+
 ##### 3. Run **tracing-service**
 
 ```cd ~/Desktop/spring-cloud-training/tracing-service && ./mvnw spring-boot:run```
 
 and open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
- 
+
 ##### 4. Run **admin-service**
 
-```cd ~/Deskop/spring-cloud-training/admin-service && ./mvnw spring-boot:run```
+```cd ~/Desktop/spring-cloud-training/admin-service && ./mvnw spring-boot:run```
 
 and open in browser port: **9024** => [http://localhost:9024](http://localhost:9024)
 
@@ -172,32 +172,32 @@ Rest of core projects requires both config-service and discovery-service. It is 
 ##### 6. Run **oath2-security-server**
 
 :exclamation: **master branch only** :exclamation:
- 
-```cd ~/Deskop/spring-cloud-training/oath2-security-server && ./mvnw spring-boot:run```
+
+```cd ~/Desktop/spring-cloud-training/oath2-security-server && ./mvnw spring-boot:run```
 
 and open in browser port: **9030** => [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
 
 ##### 7. Run **securities-service**
 
-```cd ~/Deskop/spring-cloud-training/securities-service && ./mvnw spring-boot:run```
+```cd ~/Desktop/spring-cloud-training/securities-service && ./mvnw spring-boot:run```
 
-and open in browser port: **9001** => [http://localhost:9001/info](http://localhost:9001/info) 
+and open in browser port: **9001** => [http://localhost:9001/info](http://localhost:9001/info)
 
 ##### 8. Run **lending-service**
 
-```cd ~/Deskop/spring-cloud-training/lending-service && ./mvnw spring-boot:run```
+```cd ~/Desktop/spring-cloud-training/lending-service && ./mvnw spring-boot:run```
 
 and open in browser port: **9000** => [http://localhost:9000](http://localhost:9000)
 
 ##### 9. Run **lending-ui**
 
-```cd ~/Deskop/spring-cloud-training/lending-ui && ./mvnw spring-boot:run```
+```cd ~/Desktop/spring-cloud-training/lending-ui && ./mvnw spring-boot:run```
 
 and open in browser port: **9002** => [http://localhost:9002](http://localhost:9002)
 
 ##### 10. Run **routing-service**
 
-```cd ~/Deskop/spring-cloud-training/routing-service && ./mvnw spring-boot:run```
+```cd ~/Desktop/spring-cloud-training/routing-service && ./mvnw spring-boot:run```
 
 and open in browser port: **9090** => [http://localhost:9090](http://localhost:9090)
 
@@ -207,13 +207,13 @@ and open in browser port: **9090** => [http://localhost:9090](http://localhost:9
 
 ##### 12. Run Web NODE 1
 
-```cd ~/Deskop/spring-cloud-training/ui && http-server```
+```cd ~/Desktop/spring-cloud-training/ui && http-server```
 
 and open in browser port: **8080** => [http://localhost:8080](http://localhost:8080)
 
 ##### 13. Run Web NODE 2
 
-```cd ~/Deskop/spring-cloud-training/ui && http-server -p 8090```
+```cd ~/Desktop/spring-cloud-training/ui && http-server -p 8090```
 
 and open in browser port: **8090** => [http://localhost:8090](http://localhost:8090)
 
@@ -228,7 +228,7 @@ Predefined OAuth test users created for this app:
 
 * admin - has role ADMIN
   * login: ```admin```
-  * password: ```admin``` 
+  * password: ```admin```
 * user - has role USER
   * login: ```user```
   * password:```password```
