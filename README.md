@@ -75,11 +75,11 @@ and open in browser port: **9024** => [http://localhost:9024](http://localhost:9
 
 Rest of core projects requires both config-service and discovery-service. It is important to be sure that they are up and running.
 
-##### 6. Run **oath2-security-server**
+##### 6. Run **oauth2-security-server**
 
 :exclamation: **master branch only** :exclamation:
 
-```cd %Homepath%\Desktop\spring-cloud-training\oath2-security-server && mvnw spring-boot:run```
+```cd %Homepath%\Desktop\spring-cloud-training\oauth2-security-server && mvnw spring-boot:run```
 
 and open in browser port: **9030** => [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
 
@@ -169,11 +169,11 @@ and open in browser port: **9024** => [http://localhost:9024](http://localhost:9
 
 Rest of core projects requires both config-service and discovery-service. It is important to be sure that they are working fine.
 
-##### 6. Run **oath2-security-server**
+##### 6. Run **oauth2-security-server**
 
 :exclamation: **master branch only** :exclamation:
 
-```cd ~/Desktop/spring-cloud-training/oath2-security-server && ./mvnw spring-boot:run```
+```cd ~/Desktop/spring-cloud-training/oauth2-security-server && ./mvnw spring-boot:run```
 
 and open in browser port: **9030** => [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
 
