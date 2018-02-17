@@ -18,6 +18,7 @@ During the training we will use branches:
 * **live-coding-communication** (starting point for the live coding)
 * **live-coding-routing**
 * **live-coding-security**
+* **live-coding-final** (code after live coding)
 
 
 ## Installation process
@@ -37,6 +38,17 @@ git clone https://github.com/rakk/spring-cloud-training
 git clone https://github.com/rakk/spring-cloud-training-configuration
 ````
 This might take a while...
+
+#### Checkout all live-coding branches
+
+```bash
+cd %Homepath%\Desktop\spring-cloud-config
+git checkout -b live-coding-routing origin/live-coding-routing
+git checkout -b live-coding-security origin/live-coding-security
+git checkout -b live-coding-final origin/live-coding-final
+
+git checkout -b live-coding-communication origin/live-coding-communication
+```
 
 #### Build source code
 
@@ -132,6 +144,17 @@ git clone https://github.com/rakk/spring-cloud-training
 git clone https://github.com/rakk/spring-cloud-training-configuration
 ````
 This might take a while...
+
+#### Checkout all live-coding branches
+
+```bash
+cd ~/Desktop/spring-cloud-config
+git checkout -b live-coding-routing origin/live-coding-routing
+git checkout -b live-coding-security origin/live-coding-security
+git checkout -b live-coding-final origin/live-coding-final
+
+git checkout -b live-coding-communication origin/live-coding-communication
+```
 
 #### Build source code
 
