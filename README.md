@@ -42,7 +42,7 @@ This might take a while...
 #### Checkout all live-coding branches
 
 ```bash
-cd %Homepath%\Desktop\spring-cloud-config
+cd %Homepath%\Desktop\spring-cloud-training
 git checkout -b live-coding-routing origin/live-coding-routing
 git checkout -b live-coding-security origin/live-coding-security
 git checkout -b live-coding-final origin/live-coding-final
@@ -148,7 +148,7 @@ This might take a while...
 #### Checkout all live-coding branches
 
 ```bash
-cd ~/Desktop/spring-cloud-config
+cd ~/Desktop/spring-cloud-training
 git checkout -b live-coding-routing origin/live-coding-routing
 git checkout -b live-coding-security origin/live-coding-security
 git checkout -b live-coding-final origin/live-coding-final
