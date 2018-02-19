@@ -7,10 +7,28 @@ Configuration for project is located in [rakk/spring-cloud-training-configuratio
 Table of Contents
 =================
 
+* [Overview](#overview)
 * [Branches](#branches)
 * [Build and run on Windows](#windows)
 * [Build and run Linux/MacOS](#linux-or-mac-os)
 * [Credentials](#credentials)
+
+## Overview
+
+This project contains spring-boot based services:
+
+* core service:
+  * **lending-service** - business service responsible for taking loan 
+  * **securities-service** - backend business service responsible for debt management
+* entry point
+  * **lending-ui** - spring-boot based UI for 
+  * **ui** - nodejs based (very simple) web app, uses core services as backend
+  * **routing-service** - routing/proxy server based on zuul server
+* tools:
+  * **discovery-service** - discovery service based on Netflix Eureka server
+  * **config-server** - delivers configuration for all services, by default uses [rakk/spring-cloud-training-configuration](https://github.com/rakk/spring-cloud-training-configuration) repository
+  * **admin-service** - administrative tool, allows us to view logs, change configuration on the fly etc.
+  * **tracing-service** - tracing for distributed system
 
 ## Branches
 
