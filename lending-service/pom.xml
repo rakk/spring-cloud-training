@@ -18,6 +18,8 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Edgware.RELEASE</spring-cloud.version>
+
+        <additional-jvm-properties> </additional-jvm-properties>
     </properties>
 
     <dependencies>
@@ -98,6 +100,18 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>java9</id>
+            <activation>
+                <jdk>9</jdk>
+            </activation>
+            <properties>
+                <additional-jvm-properties>--add-modules java.xml.bind</additional-jvm-properties>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -105,6 +119,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <executable>true</executable>
+                    <jvmArguments>${additional-jvm-properties}</jvmArguments>
                 </configuration>
                 <executions>
                     <execution>
