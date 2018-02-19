@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
+//@EnableOAuth2Sso
 @EnableZuulProxy
 @SpringBootApplication
 public class RoutingServiceApplication {

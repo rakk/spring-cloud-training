@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @EnableCircuitBreaker
 @EnableHystrixDashboard
 @EnableFeignClients
+//@EnableOAuth2Client
+//@EnableResourceServer
 public class LendingServiceApplication {
 
     public static void main(String[] args) {
@@ -26,4 +28,14 @@ public class LendingServiceApplication {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+//    @Bean
+//    public OAuth2FeignRequestInterceptor interceptor(OAuth2ProtectedResourceDetails details, OAuth2ClientContext context) {
+//        return new OAuth2FeignRequestInterceptor(context, details);
+//    }
+//    @Bean
+//    @LoadBalanced
+//    public OAuth2RestTemplate restTemplate(OAuth2ProtectedResourceDetails details, OAuth2ClientContext context) {
+//        return new OAuth2RestTemplate(details, context);
+//    }
 }
