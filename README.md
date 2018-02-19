@@ -1,21 +1,49 @@
 # Spring Cloud Training
 
-This project is used for training of Spring-Cloud developer tools.
+This project is used for training of Spring-Cloud training.
 
-Configuration for project is located here: [rakk/spring-cloud-training-configuration](https://github.com/rakk/spring-cloud-training-configuration) repository.
+Configuration for project is located in [rakk/spring-cloud-training-configuration](https://github.com/rakk/spring-cloud-training-configuration) repository.
 
 Table of Contents
 =================
 
+* [Overview](#overview)
+* [Branches](#branches)
 * [Build and run on Windows](#windows)
 * [Build and run Linux/MacOS](#linux-or-mac-os)
-* [OAuth configuration](#oauth)
+* [Credentials](#credentials)
+
+## Overview
+
+This project contains spring-boot based services:
+
+* core service:
+  * **lending-service** - business service responsible for taking loan 
+  * **securities-service** - backend business service responsible for debt management
+* entry point
+  * **lending-ui** - spring-boot based UI for 
+  * **ui** - nodejs based (very simple) web app, uses core services as backend
+  * **routing-service** - routing/proxy server based on zuul server
+* tools:
+  * **discovery-service** - discovery service based on Netflix Eureka server
+  * **config-server** - delivers configuration for all services, by default uses [rakk/spring-cloud-training-configuration](https://github.com/rakk/spring-cloud-training-configuration) repository
+  * **admin-service** - administrative tool, allows us to view logs, change configuration on the fly etc.
+  * **tracing-service** - tracing for distributed system
+
+## Branches
+
+During the training we will use branches:
+* **live-coding-communication** (starting point for the live coding)
+* **live-coding-routing**
+* **live-coding-security**
+* **live-coding-final** (code after live coding)
+
 
 ## Installation process
 
-Install Java JDK 8 and Node 8.9.4
+Install Java JDK 8/9 and Node 8.9.4
 
-Project will build using maven wrapper so maven installation can be skipped.
+Project can be build by **maven wrapper** so maven installation can be skipped.
 
 ## Build and run project
 
@@ -29,69 +57,101 @@ git clone https://github.com/rakk/spring-cloud-training-configuration
 ````
 This might take a while...
 
+#### Checkout all live-coding branches
+
+```bash
+cd %Homepath%\Desktop\spring-cloud-training
+git checkout -b live-coding-routing origin/live-coding-routing
+git checkout -b live-coding-security origin/live-coding-security
+git checkout -b live-coding-final origin/live-coding-final
+
+git checkout -b live-coding-communication origin/live-coding-communication
+```
+
 #### Build source code
 
-```
-cd %Homepath%\Desktop\spring-cloud-training && mvnw clean install
-```
+```cd %Homepath%\Desktop\spring-cloud-training && mvnw clean install```
+
 This might take a while...
 
 #### Run java projects
 
-##### 1. Run **config-server**
+##### 1. Run **discovery-service**
 
-```cd %Homepath%\Desktop\spring-cloud-training\config-service && mvnw spring-boot:run``` open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
+```cd %Homepath%\Desktop\spring-cloud-training\discovery-service && mvnw spring-boot:run```
 
-#### 2. Run **discovery-service**
+and open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
 
-```cd %Homepath%\Desktop\spring-cloud-training\discovery-service && mvnw spring-boot:run``` open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
+##### 2. Run **config-service**
 
-#### 3. Run **tracking-service**
+```cd %Homepath%\Desktop\spring-cloud-training\config-service && mvnw spring-boot:run```
 
-```cd %Homepath%\Desktop\spring-cloud-training\tracking-service && mvnw spring-boot:run``` open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
+and open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
+
+##### 3. Run **tracing-service**
+
+```cd %Homepath%\Desktop\spring-cloud-training\tracing-service && mvnw spring-boot:run```
+
+and open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
 
 
-#### 4. Run **admin-service**
+##### 4. Run **admin-service**
 
-```cd %Homepath%\Desktop\spring-cloud-training\admin-service && mvnw spring-boot:run``` open in browser port: **9024** => [http://localhost:9024](http://localhost:9024)
+```cd %Homepath%\Desktop\spring-cloud-training\admin-service && mvnw spring-boot:run```
 
-#### 5. Make sure that config-server and discovery-service are running
+and open in browser port: **9024** => [http://localhost:9024](http://localhost:9024)
 
-Rest of core projects requires both config-server and discovery-service. It is important to be sure that they are up and running.
+##### 5. Make sure that config-service and discovery-service are running
 
-#### 6. Run **oath2-security-server**
+Rest of core projects requires both config-service and discovery-service. It is important to be sure that they are up and running.
 
-```cd %Homepath%\Desktop\spring-cloud-training\oath2-security-server && mvnw spring-boot:run``` and open in browser port: *9030* [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
+##### 6. Run **oauth2-security-server**
 
-#### 7. Run **securities-service**
+:exclamation: **master branch only** :exclamation:
 
-```cd %Homepath%\Desktop\spring-cloud-training\securities-service && mvnw spring-boot:run``` and open in browser port: **9030** [http://localhost:9030/info](http://localhost:9030/info)
+```cd %Homepath%\Desktop\spring-cloud-training\oauth2-security-server && mvnw spring-boot:run```
 
-#### 8. Run **lending-service**
+and open in browser port: **9030** => [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
 
-```cd %Homepath%\Desktop\spring-cloud-training\lending-service && mvnw spring-boot:run``` and open in browser port: **9000** [http://localhost:9000](http://localhost:9000)
+##### 7. Run **securities-service**
 
-#### 9. Run **lending-ui**
+```cd %Homepath%\Desktop\spring-cloud-training\securities-service && mvnw spring-boot:run```
 
-```cd %Homepath%\Desktop\spring-cloud-training\lending-ui && mvnw spring-boot:run``` and open in browser port: **9002** [http://localhost:9002](http://localhost:9002)
+and open in browser port: **9001** => [http://localhost:9001/info](http://localhost:9001/info)
 
-#### 10. Run **routing-service**
+##### 8. Run **lending-service**
 
-```cd %Homepath%\Desktop\spring-cloud-training\routing-service && mvnw spring-boot:run``` and open in browser port: *9030* [http://localhost:9090](http://localhost:9090)
+```cd %Homepath%\Desktop\spring-cloud-training\lending-service && mvnw spring-boot:run```
 
-#### 11. Install http-server
+and open in browser port: **9000** => [http://localhost:9000/info](http://localhost:9000/info)
 
-```
-npm install http-server -g
-```
+##### 9. Run **lending-ui**
 
-#### 12. Run Web NODE 1
+```cd %Homepath%\Desktop\spring-cloud-training\lending-ui && mvnw spring-boot:run```
 
-```cd %Homepath%\Desktop\spring-cloud-training\ui && http-server``` and open in browser port: *8080* [http://localhost:8080](http://localhost:8080)
+and open in browser port: **9002** => [http://localhost:9002](http://localhost:9002)
 
-#### 13. Run Web NODE 2
+##### 10. Run **routing-service**
 
-```cd %Homepath%\Desktop\spring-cloud-training\ui && http-server -p 8090``` and open in browser port: *8090* [http://localhost:8090](http://localhost:8090)
+```cd %Homepath%\Desktop\spring-cloud-training\routing-service && mvnw spring-boot:run```
+
+and open in browser port: **9090** => [http://localhost:9090/routes](http://localhost:9090/routes)
+
+##### 11. Install http-server
+
+```npm install http-server -g```
+
+##### 12. Run Web NODE 1
+
+```cd %Homepath%\Desktop\spring-cloud-training\ui && http-server```
+
+and open in browser port: **8080** => [http://localhost:8080](http://localhost:8080)
+
+##### 13. Run Web NODE 2
+
+```cd %Homepath%\Desktop\spring-cloud-training\ui && http-server -p 8090```
+
+and open in browser port: **8090** => [http://localhost:8090](http://localhost:8090)
 
 ### Linux or Mac OS
 
@@ -103,75 +163,120 @@ git clone https://github.com/rakk/spring-cloud-training-configuration
 ````
 This might take a while...
 
+#### Checkout all live-coding branches
+
+```bash
+cd ~/Desktop/spring-cloud-training
+git checkout -b live-coding-routing origin/live-coding-routing
+git checkout -b live-coding-security origin/live-coding-security
+git checkout -b live-coding-final origin/live-coding-final
+
+git checkout -b live-coding-communication origin/live-coding-communication
+```
+
 #### Build source code
 
-```
-cd ~/Desktop/spring-cloud-training && ./mvnw clean install
-```
+```cd ~/Desktop/spring-cloud-training && ./mvnw clean install```
+
 This might take a while...
 
 #### Run java projects
 
-##### 1. Run **config-server**
+##### 2. Run **discovery-service**
 
-```cd ~/Desktop\spring-cloud-training\spring-cloud-training/config-service && ./mvnw spring-boot:run``` open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
+```cd ~/Desktop/spring-cloud-training/discovery-service && ./mvnw spring-boot:run```
 
-#### 2. Run **discovery-service**
+and open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
 
-```cd ~/Desktop\spring-cloud-training\discovery-service && ./mvnw spring-boot:run``` open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
+##### 1. Run **config-service**
 
-#### 3. Run **tracking-service**
+```cd ~/Desktop/spring-cloud-training/config-service && ./mvnw spring-boot:run```
 
-```cd ~/Desktop/spring-cloud-training/tracking-service && ./mvnw spring-boot:run``` open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
+and open in browser port: **9020** => [http://localhost:9020/lending-service/develop](http://localhost:9020/lending-service/develop)
 
-#### 4. Run **admin-service**
+##### 3. Run **tracing-service**
 
-```cd ~/Deskop/spring-cloud-training/admin-service && ./mvnw spring-boot:run``` open in browser port: **9024** => [http://localhost:9024](http://localhost:9024)
+```cd ~/Desktop/spring-cloud-training/tracing-service && ./mvnw spring-boot:run```
 
-#### 5. Make sure that config-server and discovery-service are running
+and open in browser port: **9022** => [http://localhost:9022](http://localhost:9022)
 
-Rest of core projects requires both config-server and discovery-service. It is important to be sure that they are working fine.
+##### 4. Run **admin-service**
 
-#### 6. Run **oath2-security-server**
+```cd ~/Desktop/spring-cloud-training/admin-service && ./mvnw spring-boot:run```
 
-```cd ~/Deskop/spring-cloud-training/oath2-security-server && ./mvnw spring-boot:run``` and open in browser port: *9030* [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
+and open in browser port: **9024** => [http://localhost:9024](http://localhost:9024)
 
-#### 7. Run **securities-service**
+##### 5. Make sure that config-service and discovery-service are running
 
-```cd ~/Deskop/spring-cloud-training/securities-service && ./mvnw spring-boot:run``` and open in browser port: **9030** [http://localhost:9030/info](http://localhost:9030/info)
+Rest of core projects requires both config-service and discovery-service. It is important to be sure that they are working fine.
 
-#### 8. Run **lending-service**
+##### 6. Run **oauth2-security-server**
 
-```cd ~/Deskop/spring-cloud-training/lending-service && ./mvnw spring-boot:run``` and open in browser port: **9000** [http://localhost:9000](http://localhost:9000)
+:exclamation: **master branch only** :exclamation:
 
-#### 9. Run **lending-ui**
+```cd ~/Desktop/spring-cloud-training/oauth2-security-server && ./mvnw spring-boot:run```
 
-```cd ~/Deskop/spring-cloud-training/lending-ui && ./mvnw spring-boot:run``` and open in browser port: **9002** [http://localhost:9002](http://localhost:9002)
+and open in browser port: **9030** => [http://localhost:9030/uaa/login](http://localhost:9030/uaa/login)
 
-#### 10. Run **routing-service**
+##### 7. Run **securities-service**
 
-```cd ~/Deskop/spring-cloud-training/routing-service && ./mvnw spring-boot:run``` and open in browser port: *9030* [http://localhost:9090](http://localhost:9090)
+```cd ~/Desktop/spring-cloud-training/securities-service && ./mvnw spring-boot:run```
 
-#### 11. Install http-server
+and open in browser port: **9001** => [http://localhost:9001/info](http://localhost:9001/info)
 
-```
-npm install http-server -g
-```
+##### 8. Run **lending-service**
 
-#### 12. Run Web NODE 1
+```cd ~/Desktop/spring-cloud-training/lending-service && ./mvnw spring-boot:run```
 
-```cd ~/Deskop/spring-cloud-training/ui && http-server``` and open in browser port: *8080* [http://localhost:8080](http://localhost:8080)
+and open in browser port: **9000** => [http://localhost:9000/info](http://localhost:9000/info)
 
-#### 13. Run Web NODE 2
+##### 9. Run **lending-ui**
 
-```cd ~/Deskop/spring-cloud-training/ui && http-server -p 8090``` and open in browser port: *8090* [http://localhost:8090](http://localhost:8090)
+```cd ~/Desktop/spring-cloud-training/lending-ui && ./mvnw spring-boot:run```
+
+and open in browser port: **9002** => [http://localhost:9002](http://localhost:9002)
+
+##### 10. Run **routing-service**
+
+```cd ~/Desktop/spring-cloud-training/routing-service && ./mvnw spring-boot:run```
+
+and open in browser port: **9090** => [http://localhost:9090/routes](http://localhost:9090/routes)
+
+##### 11. Install http-server
+
+```npm install http-server -g```
+
+##### 12. Run Web NODE 1
+
+```cd ~/Desktop/spring-cloud-training/ui && http-server```
+
+and open in browser port: **8080** => [http://localhost:8080](http://localhost:8080)
+
+##### 13. Run Web NODE 2
+
+```cd ~/Desktop/spring-cloud-training/ui && http-server -p 8090```
+
+and open in browser port: **8090** => [http://localhost:8090](http://localhost:8090)
 
 
-## OAuth
+## Credentials
 
-This version of the app uses facebook as external authentication provider (oauth SSO).
+### Local OAuth Server (master branch)
 
-Facebook OAuth test users created for this app
+:exclamation: Local OAuth Server is only on **master** branch :exclamation:
+
+Predefined OAuth test users created for this app:
+
+* admin - has role ADMIN
+  * login: ```admin```
+  * password: ```admin```
+* user - has role USER
+  * login: ```user```
+  * password:```password```
+
+### Facebook
+
+:exclamation: Credentials needed on **live-coding-security** and **live-coding-final** branches :exclamation:
 
 * ```hqichraxly_1516911670@tfbnw.net```
 
@@ -182,56 +287,3 @@ Facebook OAuth test users created for this app
 * ```pyyxtvbbbr_1516911674@tfbnw.net```
 
 * ```open_vbgkmxr_user@tfbnw.net```
-## UI project
-How To start http server with simple HTML page
-
-1. Install Node.js 8.9.4
-2. Install http-server: ```npm install http-server -g```
-3. Run first node of UI server:
-
-    a. Go to folder UI in the project and run
-
-    b. ```bash
-    http-sever``` in first console window
-
-    c. Open web browser ```http://localhost:8080```
-4. Run second node of UI server:
-
-    a. Go to folder UI in the proejct and
-
-    b. ```bash
-    http-server -p 8090``` in second console window
-
-    c. Open web browser ```http://localhost:8090```
-
-## How to run Java projects
-
-### Build project
-
-Run ```mvn clean install``` to build all projects.
-
-### Config Server and Discovery Service
-
-```cd config-service && ./mvnw spring-boot:run```
-
-```cd discovery-service && ./mvnw spring-boot:run```
-
-make sure that services are loaded:
-* ```http://localhost:9020/lending-service/whatever```
-* ```http://localhost:9021```
-
-### Other tools
-
-```cd admin-service && ./mvnw spring-boot:run```
-
-```cd tracing-service && ./mvnw spring-boot:run```
-
-### Core services
-
-```cd lending-service && ./mvnw spring-boot:run```
-
-```cd lending-ui && ./mvnw spring-boot:run```
-
-```cd securities-service && ./mvnw spring-boot:run```
-
-```cd routing-service && ./mvnw spring-boot:run```
