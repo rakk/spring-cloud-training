@@ -105,7 +105,7 @@ and open in browser port: **9001** => [http://localhost:9001/info](http://localh
 
 ```cd %Homepath%\Desktop\spring-cloud-training\lending-service && mvnw spring-boot:run```
 
-and open in browser port: **9000** => [http://localhost:9000](http://localhost:9000)
+and open in browser port: **9000** => [http://localhost:9000/info](http://localhost:9000/info)
 
 ##### 9. Run **lending-ui**
 
@@ -117,7 +117,7 @@ and open in browser port: **9002** => [http://localhost:9002](http://localhost:9
 
 ```cd %Homepath%\Desktop\spring-cloud-training\routing-service && mvnw spring-boot:run```
 
-and open in browser port: **9090** => [http://localhost:9090](http://localhost:9090)
+and open in browser port: **9090** => [http://localhost:9090/routes](http://localhost:9090/routes)
 
 ##### 11. Install http-server
 
@@ -210,7 +210,7 @@ and open in browser port: **9001** => [http://localhost:9001/info](http://localh
 
 ```cd ~/Desktop/spring-cloud-training/lending-service && ./mvnw spring-boot:run```
 
-and open in browser port: **9000** => [http://localhost:9000](http://localhost:9000)
+and open in browser port: **9000** => [http://localhost:9000/info](http://localhost:9000/info)
 
 ##### 9. Run **lending-ui**
 
@@ -222,7 +222,7 @@ and open in browser port: **9002** => [http://localhost:9002](http://localhost:9
 
 ```cd ~/Desktop/spring-cloud-training/routing-service && ./mvnw spring-boot:run```
 
-and open in browser port: **9090** => [http://localhost:9090](http://localhost:9090)
+and open in browser port: **9090** => [http://localhost:9090/routes](http://localhost:9090/routes)
 
 ##### 11. Install http-server
 
