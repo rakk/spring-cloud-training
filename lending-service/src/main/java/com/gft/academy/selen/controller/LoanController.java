@@ -1,6 +1,5 @@
 package com.gft.academy.selen.controller;
 
-import com.gft.academy.selen.client.SecurityFeignClient;
 import com.gft.academy.selen.domain.Loan;
 import com.gft.academy.selen.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +24,15 @@ public class LoanController {
     @Autowired
     private LoanService loanService;
 
-    @Autowired
-    private SecurityFeignClient securityFeignClient;
+//    @Autowired
+//    private SecurityFeignClient securityFeignClient;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> takeOutLoan(@RequestParam String securityId, @RequestParam Integer quantity) {
-        if (!securityFeignClient.securities().getBody().stream()
-                .map(security -> security.getId()).collect(Collectors.toSet()).contains(securityId)) {
-            return ResponseEntity.badRequest().build();
-        }
-        securityFeignClient.securities();
+//        if (!securityFeignClient.securities().stream()
+//                .map(security -> security.getId()).collect(Collectors.toSet()).contains(securityId)) {
+//            return ResponseEntity.badRequest().build();
+//        }
         Loan loan = loanService.takeOutLoan(securityId, quantity);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/loan/{id}")
                 .buildAndExpand(loan.getId()).toUri();
