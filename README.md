@@ -70,7 +70,7 @@ git checkout -b live-coding-communication origin/live-coding-communication
 
 #### Build source code
 
-```cd %Homepath%\Desktop\spring-cloud-training && mvnw clean install```
+```cd %Homepath%\Desktop\spring-cloud-training && mvnw clean package```
 
 This might take a while...
 
@@ -176,19 +176,19 @@ git checkout -b live-coding-communication origin/live-coding-communication
 
 #### Build source code
 
-```cd ~/Desktop/spring-cloud-training && ./mvnw clean install```
+```cd ~/Desktop/spring-cloud-training && ./mvnw clean package```
 
 This might take a while...
 
 #### Run java projects
 
-##### 2. Run **discovery-service**
+##### 1. Run **discovery-service**
 
 ```cd ~/Desktop/spring-cloud-training/discovery-service && ./mvnw spring-boot:run```
 
 and open in browser port: **9021** => [http://localhost:9021](http://localhost:9021)
 
-##### 1. Run **config-service**
+##### 2. Run **config-service**
 
 ```cd ~/Desktop/spring-cloud-training/config-service && ./mvnw spring-boot:run```
 
