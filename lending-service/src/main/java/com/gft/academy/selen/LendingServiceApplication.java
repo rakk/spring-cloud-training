@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient
 @SpringBootApplication
+//@EnableHystrix
+//@EnableHystrixDashboard
+//@EnableFeignClients
 public class LendingServiceApplication {
 
     public static void main(String[] args) {

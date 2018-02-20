@@ -21,15 +21,18 @@ import java.util.stream.Collectors;
 @RequestMapping(path = "/loan")
 public class LoanController {
 
-    private final LoanService loanService;
-
     @Autowired
-    public LoanController(LoanService loanService) {
-        this.loanService = loanService;
-    }
+    private LoanService loanService;
+
+//    @Autowired
+//    private SecurityFeignClient securityFeignClient;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> takeOutLoan(@RequestParam String securityId, @RequestParam Integer quantity) {
+//        if (!securityFeignClient.securities().stream()
+//                .map(security -> security.getId()).collect(Collectors.toSet()).contains(securityId)) {
+//            return ResponseEntity.badRequest().build();
+//        }
         Loan loan = loanService.takeOutLoan(securityId, quantity);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/loan/{id}")
                 .buildAndExpand(loan.getId()).toUri();

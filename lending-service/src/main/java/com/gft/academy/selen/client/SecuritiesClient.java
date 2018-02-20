@@ -21,14 +21,24 @@ public class SecuritiesClient {
         this.restTemplate = restTemplate;
     }
 
+//    @HystrixCommand(fallbackMethod = "pending")
     public LoanStatus incurDebt(Loan loan) {
         URI targetURI = restTemplate.postForLocation("http://securities-service/debt", loan);
         Loan transfer = restTemplate.getForObject(targetURI, Loan.class);
         return  transfer.getStatus();
     }
 
+//    public LoanStatus pending(Loan loan) {
+//        return LoanStatus.PENDING;
+//    }
+
+//    @HystrixCommand(fallbackMethod = "pendingReturn")
     public LoanStatus returnDebt(Loan loan) {
         ResponseEntity<Loan> returned = restTemplate.exchange ("http://securities-service/debt/" + loan.getId(), HttpMethod.PUT, new HttpEntity<>(loan), Loan.class);
         return returned.getBody().getStatus();
     }
+
+//    public LoanStatus pendingReturn(Loan loan) {
+//        return LoanStatus.PENDING_RETURN;
+//    }
 }
